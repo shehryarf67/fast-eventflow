@@ -8,7 +8,7 @@ Part A includes the IA diagram, sixteen-card printable HTML pack, proposed navig
 
 `evidence/test-results.json` records eighteen passing browser scenarios, twenty-four axe snapshots and the executable prototype's SHA256. Screenshots record actual automated browser views. Contrast checks marked incomplete remain review items; they are not counted as passed. `evidence/Document-QA.md` records the report conversion and visual inspection method.
 
-The navigation is team-proposed. Complete the associated activity records, personal reflection responses, original captioned narration and live checkpoint as listed in the submission checklist. No MP4 has been generated in this package.
+The navigation is team-proposed. Complete the associated activity records, personal reflection responses, original captioned narration and live checkpoint as listed in the submission checklist. Silent screen footage is supplied in `video/D08-Shmeezki&Mahid-D4-Prototype.mp4`; add the team's narration and captions before submitting it. See `video/Recording-notes.md` for the timing and verification record.
 
 ## Regenerating artifacts
 

@@ -1,0 +1,11 @@
+{
+  "durationSeconds": 295,
+  "resolution": "1920x1080",
+  "codec": "H.264",
+  "fps": 25,
+  "audioTracks": 0,
+  "subtitleTracks": 0,
+  "fullDecode": "PASS",
+  "fileBytes": 13999008,
+  "sha256": "65236af18f9e530b069645e120c145a409d549fb9b46a9f177cfe79642564bb1"
+}
