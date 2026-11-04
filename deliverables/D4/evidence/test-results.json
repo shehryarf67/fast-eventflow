@@ -1,0 +1,300 @@
+{
+  "runAt": "2026-11-04T13:58:25.350Z",
+  "demoClock": "2026-11-04",
+  "browser": "156.0.4314.58",
+  "mode": "Headless Edge via Playwright; file:// local execution",
+  "playwright": "1.62.1",
+  "axe": "4.10.3",
+  "prototypeSHA256": "2feb7d075ce67ab5a7948a8442299cdaa564704cda927cb00781880f8ef8e221",
+  "results": [
+    {
+      "name": "W1 dashboard loads four requests and initial loading ends",
+      "status": "PASS"
+    },
+    {
+      "name": "W3 on-time details include stage, holder, update and history",
+      "status": "PASS"
+    },
+    {
+      "name": "W4 overdue derives two days from fixed clock and labels simulation",
+      "status": "PASS"
+    },
+    {
+      "name": "W5 refusal shows meaningful reason and no edit action",
+      "status": "PASS"
+    },
+    {
+      "name": "Simulated staff changes produce reason and correction action",
+      "status": "PASS"
+    },
+    {
+      "name": "W6 form retains original fields, drafts persist across reload",
+      "status": "PASS"
+    },
+    {
+      "name": "W7 invalid submission blocked; field messages and focus; input retained",
+      "status": "PASS"
+    },
+    {
+      "name": "Error summary link focuses field without changing route",
+      "status": "PASS"
+    },
+    {
+      "name": "W8 valid resubmission shows loading, disabled state and updated stage",
+      "status": "PASS"
+    },
+    {
+      "name": "Empty state and New Request complete end to end",
+      "status": "PASS"
+    },
+    {
+      "name": "Help, missing request and all outcome states remain navigable",
+      "status": "PASS"
+    },
+    {
+      "name": "Filters and no-results recovery work",
+      "status": "PASS"
+    },
+    {
+      "name": "Programmatic keyboard path: skip link, navigation, focus and reverse Tab",
+      "status": "PASS"
+    },
+    {
+      "name": "Responsive view and grayscale retain text status; no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "Markup escapes user text",
+      "status": "PASS"
+    },
+    {
+      "name": "Corrupt storage recovers; blocked storage degrades visibly",
+      "status": "PASS"
+    },
+    {
+      "name": "Part A ten panels and keyboard screen selection work",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser JavaScript exceptions",
+      "status": "PASS"
+    }
+  ],
+  "audits": [
+    {
+      "screen": "W1 dashboard",
+      "violations": [],
+      "incomplete": [],
+      "passes": 21
+    },
+    {
+      "screen": "W3 on time",
+      "violations": [],
+      "incomplete": [],
+      "passes": 21
+    },
+    {
+      "screen": "W4 overdue",
+      "violations": [],
+      "incomplete": [],
+      "passes": 21
+    },
+    {
+      "screen": "W5 refused",
+      "violations": [],
+      "incomplete": [],
+      "passes": 21
+    },
+    {
+      "screen": "W5 changes needed",
+      "violations": [],
+      "incomplete": [],
+      "passes": 27
+    },
+    {
+      "screen": "W6 edit",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 1
+        }
+      ],
+      "passes": 21
+    },
+    {
+      "screen": "W7 validation",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 1
+        }
+      ],
+      "passes": 26
+    },
+    {
+      "screen": "W8 resubmitted",
+      "violations": [],
+      "incomplete": [],
+      "passes": 24
+    },
+    {
+      "screen": "W2 empty",
+      "violations": [],
+      "incomplete": [],
+      "passes": 23
+    },
+    {
+      "screen": "W9 new",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 2
+        }
+      ],
+      "passes": 24
+    },
+    {
+      "screen": "W8 new submission confirmation",
+      "violations": [],
+      "incomplete": [],
+      "passes": 27
+    },
+    {
+      "screen": "W10 help",
+      "violations": [],
+      "incomplete": [],
+      "passes": 25
+    },
+    {
+      "screen": "W5 approved",
+      "violations": [],
+      "incomplete": [],
+      "passes": 27
+    },
+    {
+      "screen": "W1 mobile grayscale",
+      "violations": [],
+      "incomplete": [],
+      "passes": 25
+    },
+    {
+      "screen": "Part A W1",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 25
+        }
+      ],
+      "passes": 25
+    },
+    {
+      "screen": "Part A W2",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 25
+        }
+      ],
+      "passes": 25
+    },
+    {
+      "screen": "Part A W3",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 25
+        }
+      ],
+      "passes": 26
+    },
+    {
+      "screen": "Part A W4",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 25
+        }
+      ],
+      "passes": 26
+    },
+    {
+      "screen": "Part A W5",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 25
+        }
+      ],
+      "passes": 26
+    },
+    {
+      "screen": "Part A W6",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 25
+        }
+      ],
+      "passes": 25
+    },
+    {
+      "screen": "Part A W7",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 25
+        }
+      ],
+      "passes": 25
+    },
+    {
+      "screen": "Part A W8",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 26
+        }
+      ],
+      "passes": 25
+    },
+    {
+      "screen": "Part A W9",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 24
+        }
+      ],
+      "passes": 25
+    },
+    {
+      "screen": "Part A W10",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 24
+        }
+      ],
+      "passes": 25
+    }
+  ],
+  "pageErrors": [],
+  "limitations": [
+    "Automated checks are not a manual keyboard or screen-reader walkthrough.",
+    "Axe incomplete results require human review.",
+    "No usability success rates or WCAG conformance inferred."
+  ]
+}

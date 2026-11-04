@@ -1,0 +1,8 @@
+{
+  "name": "fast-eventflow-d4",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Offline CS3014 D4 prototype; no runtime dependencies or build step",
+  "scripts": { "test": "node tests/verify.cjs", "check": "node tools/check.cjs" },
+  "devDependencies": { "axe-core": "4.10.3", "playwright": "1.62.1" }
+}

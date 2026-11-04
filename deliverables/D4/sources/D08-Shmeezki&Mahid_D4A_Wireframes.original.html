@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Approval Portal Wireframes</title>
+<style>
+/* D4 Part A — deliberately low fidelity. Grayscale only; structure is the subject.
+   Layout: fixed screen index on the left, one wireframe frame centre, annotations beneath. */
+:root{
+  --paper:#ffffff;
+  --page:#f4f4f5;
+  --ink:#18181b;
+  --ink-2:#52525b;
+  --ink-3:#8a8a93;
+  --rule:#d4d4d8;
+  --rule-strong:#a1a1aa;
+  --fill:#ebebed;
+  --fill-2:#e0e0e3;
+  --focus:#18181b;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--page);
+  color:var(--ink);
+  font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;padding:10px 14px;z-index:50}
+.skip:focus{left:8px;top:8px}
+
+.wrap{max-width:1180px;margin:0 auto;padding:28px 16px 64px}
+
+header.masthead{border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:22px}
+.eyebrow{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);font-weight:700;margin:0 0 6px}
+h1{font-size:25px;line-height:1.2;margin:0 0 6px;font-weight:700;text-wrap:balance}
+.sub{margin:0;color:var(--ink-2);font-size:13.5px}
+
+.fidelity{
+  margin:18px 0 26px;border:1px solid var(--rule-strong);background:var(--paper);
+  padding:12px 14px;font-size:13px;color:var(--ink-2);
+}
+.fidelity b{color:var(--ink)}
+
+h2{font-size:17px;margin:34px 0 12px;font-weight:700;border-bottom:1px solid var(--rule);padding-bottom:7px}
+
+/* ---- flow map ---- */
+.mapbox{background:var(--paper);border:1px solid var(--rule);padding:14px;overflow-x:auto}
+.mapbox svg{display:block;min-width:720px;width:100%;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font-size:12.5px;color:var(--ink-2)}
+.legend span{display:flex;align-items:center;gap:7px}
+.swatch{width:26px;height:0;border-top:2px solid var(--ink)}
+.swatch.dash{border-top-style:dashed}
+
+/* ---- browser layout ---- */
+.browser{display:grid;grid-template-columns:232px minmax(0,1fr);gap:22px;align-items:start;margin-top:14px}
+@media (max-width:820px){.browser{grid-template-columns:1fr}}
+
+.index{background:var(--paper);border:1px solid var(--rule);padding:8px}
+.index h3{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:6px 8px 9px;font-weight:700}
+[role="tab"]{
+  display:block;width:100%;text-align:left;background:none;border:0;border-left:3px solid transparent;
+  font:inherit;font-size:13.5px;color:var(--ink-2);padding:8px 10px;cursor:pointer;
+}
+[role="tab"]:hover{background:var(--fill)}
+[role="tab"][aria-selected="true"]{border-left-color:var(--ink);background:var(--fill-2);color:var(--ink);font-weight:600}
+[role="tab"] .code{font-variant-numeric:tabular-nums;color:var(--ink-3);margin-right:7px;font-size:12px}
+[role="tab"][aria-selected="true"] .code{color:var(--ink-2)}
+
+.stage{min-width:0}
+.framewrap{display:flex;justify-content:center;background:var(--paper);border:1px solid var(--rule);padding:26px 16px}
+
+/* ---- the wireframe device frame ---- */
+.frame{width:100%;max-width:392px;border:2px solid var(--ink);background:var(--paper)}
+.statusbar{display:flex;justify-content:space-between;font-size:10px;color:var(--ink-3);padding:5px 12px;border-bottom:1px solid var(--rule)}
+.appbar{display:flex;align-items:center;gap:10px;padding:12px;border-bottom:2px solid var(--ink)}
+.appbar .glyph{width:22px;height:22px;border:1.5px solid var(--ink-2);flex:none}
+.appbar .ttl{font-weight:700;font-size:14px}
+.body{padding:12px}
+
+.card{border:1.5px solid var(--rule-strong);padding:11px;margin-bottom:10px;background:var(--paper)}
+.card:last-child{margin-bottom:0}
+.rowtop{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.rtitle{font-weight:700;font-size:14px;margin:0}
+.meta{font-size:11.5px;color:var(--ink-3);margin:4px 0 0}
+
+/* status chips: shape + text only, never colour (serves R5) */
+.chip{font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;border:1.5px solid var(--ink);flex:none;white-space:nowrap}
+.chip.ok{border-style:solid}
+.chip.late{border-style:solid;border-width:3px}
+.chip.decided{border-style:dashed}
+
+.steps{display:flex;gap:4px;margin:11px 0 0}
+.step{flex:1;height:8px;border:1.5px solid var(--rule-strong);background:var(--paper)}
+.step.done{background:var(--ink-3);border-color:var(--ink-3)}
+.step.now{background:repeating-linear-gradient(45deg,var(--ink-3),var(--ink-3) 2px,var(--paper) 2px,var(--paper) 4px)}
+.steplabels{display:flex;justify-content:space-between;font-size:9.5px;color:var(--ink-3);margin-top:4px}
+
+.kv{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:12px;margin:12px 0 0}
+.kv dt{color:var(--ink-3)}
+.kv dd{margin:0;font-weight:600}
+
+.btn{display:block;width:100%;text-align:center;border:2px solid var(--ink);background:var(--paper);
+  font:inherit;font-size:13px;font-weight:700;padding:10px;cursor:pointer;margin-top:12px}
+.btn:hover{background:var(--fill)}
+.btn.ghost{border-width:1.5px;border-color:var(--rule-strong);font-weight:600}
+.btn[disabled]{color:var(--ink-3);border-color:var(--rule);cursor:not-allowed}
+
+.field{margin-bottom:13px}
+.field label{display:block;font-size:12px;font-weight:700;margin-bottom:4px}
+.field .req{color:var(--ink-2);font-weight:400}
+.inp{border:1.5px solid var(--rule-strong);height:34px;display:flex;align-items:center;padding:0 9px;font-size:12.5px;color:var(--ink-3)}
+.inp.tall{height:62px;align-items:flex-start;padding-top:8px}
+.inp.bad{border-width:2.5px;border-color:var(--ink);border-style:solid}
+.err{font-size:11.5px;font-weight:700;margin-top:5px;display:flex;gap:6px;align-items:flex-start}
+.err .mark{border:2px solid var(--ink);width:14px;height:14px;flex:none;display:grid;place-items:center;font-size:10px;line-height:1}
+
+.callout{border:2px solid var(--ink);padding:10px;font-size:12px;margin-bottom:11px}
+.callout strong{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+
+.empty{text-align:center;padding:34px 14px;border:1.5px dashed var(--rule-strong)}
+.empty .box{width:46px;height:46px;border:2px solid var(--rule-strong);margin:0 auto 12px}
+.empty p{margin:0 0 4px;font-size:13px;font-weight:700}
+.empty .hint{font-weight:400;font-size:12px;color:var(--ink-3)}
+
+.success{text-align:center;padding:26px 14px}
+.success .ring{width:52px;height:52px;border:3px solid var(--ink);margin:0 auto 14px;display:grid;place-items:center;font-size:22px}
+
+.tabbar{display:flex;border-top:2px solid var(--ink)}
+.tabbar div{flex:1;text-align:center;padding:9px 4px;font-size:10.5px;color:var(--ink-3);border-right:1px solid var(--rule)}
+.tabbar div:last-child{border-right:0}
+.tabbar div[aria-current]{font-weight:700;color:var(--ink);box-shadow:inset 0 -3px 0 var(--ink)}
+
+/* ---- annotations ---- */
+.notes{margin-top:18px;background:var(--paper);border:1px solid var(--rule);padding:16px}
+.notes h3{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2);margin:0 0 10px;font-weight:700}
+.notes dl{display:grid;grid-template-columns:142px minmax(0,1fr);gap:9px 16px;margin:0;font-size:13px}
+.notes dt{font-weight:700}
+.notes dd{margin:0;color:var(--ink-2)}
+.notes dd code{background:var(--fill);padding:1px 5px;font-size:12px}
+
+.pathtag{display:inline-block;border:2px solid var(--ink);font-size:10.5px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;padding:3px 7px;margin-bottom:10px}
+
+footer.foot{margin-top:40px;border-top:1px solid var(--rule);padding-top:14px;font-size:12.5px;color:var(--ink-3)}
+</style>
+</head>
+<body>
+<a class="skip" href="#stage">Skip to the wireframe</a>
+<div class="wrap">
+
+<header class="masthead">
+  <p class="eyebrow">CS3014 · D4 Part A · D08 Shmeezki &amp; Mahid</p>
+  <h1>Status-first Approval Portal — wireframe flow</h1>
+  <p class="sub">Core task: find out where a submitted event request stands, and act on what you find.</p>
+</header>
+
+<div class="fidelity">
+  <b>Deliberately low fidelity.</b> Grayscale, boxes and labels. No brand colour, no illustration, no final typography.
+  Status is carried by <b>text and border weight</b>, never by colour alone, which is the same constraint requirement R5
+  imposes on the built version.
+</div>
+
+<h2>Navigation map</h2>
+<div class="mapbox">
+  <svg viewBox="0 0 880 520" role="img" aria-labelledby="maptitle mapdesc">
+    <title id="maptitle">Navigation map of the eight wireframe screens</title>
+    <desc id="mapdesc">W2 Empty state leads to W1 My Requests. W1 opens either W3 Request detail on time or W4 Request detail overdue. W4 leads to W5 Decision recorded. W5 leads to W6 Edit and resubmit. W6 and W7 Validation errors form a loop on the alternate path. W6 leads to W8 Resubmitted confirmation.</desc>
+    <defs>
+      <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#18181b"></path>
+      </marker>
+    </defs>
+    <g font-family="system-ui,sans-serif" font-size="12.5" fill="#18181b">
+
+      <g>
+        <rect x="24" y="26" width="158" height="52" fill="#ffffff" stroke="#a1a1aa" stroke-width="1.5"></rect>
+        <text x="36" y="47" font-size="10.5" fill="#8a8a93" font-weight="700">W2</text>
+        <text x="36" y="65" font-weight="600">Empty state</text>
+      </g>
+      <g>
+        <rect x="280" y="26" width="168" height="52" fill="#ffffff" stroke="#18181b" stroke-width="2.5"></rect>
+        <text x="292" y="47" font-size="10.5" fill="#8a8a93" font-weight="700">W1 · ENTRY</text>
+        <text x="292" y="65" font-weight="700">My Requests</text>
+      </g>
+      <g>
+        <rect x="600" y="118" width="178" height="52" fill="#ffffff" stroke="#a1a1aa" stroke-width="1.5"></rect>
+        <text x="612" y="139" font-size="10.5" fill="#8a8a93" font-weight="700">W3</text>
+        <text x="612" y="157" font-weight="600">Detail — on time</text>
+      </g>
+      <g>
+        <rect x="280" y="118" width="168" height="52" fill="#ffffff" stroke="#a1a1aa" stroke-width="1.5"></rect>
+        <text x="292" y="139" font-size="10.5" fill="#8a8a93" font-weight="700">W4</text>
+        <text x="292" y="157" font-weight="600">Detail — overdue</text>
+      </g>
+      <g>
+        <rect x="280" y="210" width="168" height="52" fill="#ffffff" stroke="#a1a1aa" stroke-width="1.5"></rect>
+        <text x="292" y="231" font-size="10.5" fill="#8a8a93" font-weight="700">W5</text>
+        <text x="292" y="249" font-weight="600">Decision recorded</text>
+      </g>
+      <g>
+        <rect x="280" y="302" width="168" height="52" fill="#ffffff" stroke="#a1a1aa" stroke-width="1.5"></rect>
+        <text x="292" y="323" font-size="10.5" fill="#8a8a93" font-weight="700">W6</text>
+        <text x="292" y="341" font-weight="600">Edit &amp; resubmit</text>
+      </g>
+      <g>
+        <rect x="600" y="302" width="178" height="52" fill="#ffffff" stroke="#18181b" stroke-width="2.5" stroke-dasharray="7 4"></rect>
+        <text x="612" y="323" font-size="10.5" fill="#8a8a93" font-weight="700">W7 · ERROR PATH</text>
+        <text x="612" y="341" font-weight="700">Validation errors</text>
+      </g>
+      <g>
+        <rect x="280" y="420" width="168" height="52" fill="#ffffff" stroke="#a1a1aa" stroke-width="1.5"></rect>
+        <text x="292" y="441" font-size="10.5" fill="#8a8a93" font-weight="700">W8</text>
+        <text x="292" y="459" font-weight="600">Resubmitted</text>
+      </g>
+
+      <g stroke="#18181b" stroke-width="1.6" fill="none" marker-end="url(#ar)">
+        <path d="M182,52 L274,52"></path>
+        <path d="M400,78 L400,112"></path>
+        <path d="M448,52 Q690,52 689,112"></path>
+        <path d="M364,170 L364,204"></path>
+        <path d="M364,262 L364,296"></path>
+        <path d="M364,354 L364,414"></path>
+      </g>
+      <g stroke="#18181b" stroke-width="1.6" fill="none" marker-end="url(#ar)" stroke-dasharray="7 4">
+        <path d="M448,318 L594,318"></path>
+        <path d="M594,340 L448,340"></path>
+      </g>
+
+      <g font-size="11" fill="#52525b">
+        <text x="188" y="44">first request</text>
+        <text x="406" y="100">open overdue</text>
+        <text x="470" y="44">open on time</text>
+        <text x="370" y="192">decision recorded</text>
+        <text x="370" y="284">edit &amp; resubmit</text>
+        <text x="458" y="312">missing field</text>
+        <text x="458" y="360">corrected</text>
+        <text x="370" y="400">submit valid</text>
+      </g>
+    </g>
+  </svg>
+  <div class="legend">
+    <span><i class="swatch"></i> Main path</span>
+    <span><i class="swatch dash"></i> Alternate / error path</span>
+    <span><b style="font-weight:700">Heavy border</b> = entry screen and error screen</span>
+  </div>
+</div>
+
+<h2>Screens</h2>
+<div class="browser">
+
+  <nav class="index" aria-label="Wireframe screens">
+    <h3>Screen index</h3>
+    <div role="tablist" aria-orientation="vertical" aria-label="Wireframe screens">
+      <button role="tab" id="t1" aria-controls="p1" aria-selected="true"  tabindex="0"><span class="code">W1</span>My Requests</button>
+      <button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1"><span class="code">W2</span>Empty state</button>
+      <button role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1"><span class="code">W3</span>Detail — on time</button>
+      <button role="tab" id="t4" aria-controls="p4" aria-selected="false" tabindex="-1"><span class="code">W4</span>Detail — overdue</button>
+      <button role="tab" id="t5" aria-controls="p5" aria-selected="false" tabindex="-1"><span class="code">W5</span>Decision recorded</button>
+      <button role="tab" id="t6" aria-controls="p6" aria-selected="false" tabindex="-1"><span class="code">W6</span>Edit &amp; resubmit</button>
+      <button role="tab" id="t7" aria-controls="p7" aria-selected="false" tabindex="-1"><span class="code">W7</span>Validation errors</button>
+      <button role="tab" id="t8" aria-controls="p8" aria-selected="false" tabindex="-1"><span class="code">W8</span>Resubmitted</button>
+    </div>
+  </nav>
+
+  <div class="stage" id="stage">
+
+    <!-- W1 -->
+    <div role="tabpanel" id="p1" aria-labelledby="t1" tabindex="0">
+      <div class="framewrap">
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="appbar"><div class="glyph"></div><div class="ttl">My Requests</div></div>
+          <div class="body">
+            <div class="card">
+              <div class="rowtop">
+                <div><p class="rtitle">Annual TechFest</p><p class="meta">#E-024 · submitted 6 Oct</p></div>
+                <span class="chip late">Overdue 2d</span>
+              </div>
+              <div class="steps"><i class="step done"></i><i class="step done"></i><i class="step now"></i><i class="step"></i></div>
+              <div class="steplabels"><span>Submitted</span><span>Mentor</span><span>Dept</span><span>Decision</span></div>
+              <p class="meta">With Department Office · last update 10 Oct</p>
+            </div>
+            <div class="card">
+              <div class="rowtop">
+                <div><p class="rtitle">Guest Speaker Session</p><p class="meta">#E-031 · submitted 11 Oct</p></div>
+                <span class="chip ok">On time</span>
+              </div>
+              <div class="steps"><i class="step done"></i><i class="step now"></i><i class="step"></i><i class="step"></i></div>
+              <div class="steplabels"><span>Submitted</span><span>Mentor</span><span>Dept</span><span>Decision</span></div>
+              <p class="meta">With Faculty Mentor · expected 15 Oct</p>
+            </div>
+            <button class="btn">New request</button>
+          </div>
+          <div class="tabbar"><div aria-current="page">Requests</div><div>New</div><div>Help</div></div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>Annotation — W1</h3>
+        <dl>
+          <dt>Role in flow</dt><dd>Entry screen and hub. Every request the lead owns, in one list, answering R1 without contacting anyone.</dd>
+          <dt>Visual hierarchy</dt><dd>Request title heaviest, status chip second by border weight and position, metadata smallest and greyest. The reader's first fixation lands on title plus status.</dd>
+          <dt>Gestalt — proximity</dt><dd>Title, stage bar and office line sit inside one bordered region with tight internal spacing and a wide gap between cards, so each request reads as one object rather than six loose lines.</dd>
+          <dt>Non-colour status</dt><dd>On time is a 1.5px border, Overdue a 3px border plus the word and elapsed days. Shape and text, not hue.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- W2 -->
+    <div role="tabpanel" id="p2" aria-labelledby="t2" tabindex="0" hidden>
+      <div class="framewrap">
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="appbar"><div class="glyph"></div><div class="ttl">My Requests</div></div>
+          <div class="body">
+            <div class="empty">
+              <div class="box"></div>
+              <p>No requests yet</p>
+              <p class="hint">When your society submits an event request it will appear here, with its current stage.</p>
+              <button class="btn" style="margin-top:16px">New request</button>
+            </div>
+          </div>
+          <div class="tabbar"><div aria-current="page">Requests</div><div>New</div><div>Help</div></div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>Annotation — W2</h3>
+        <dl>
+          <dt>Role in flow</dt><dd>Empty state of the entry screen. A first-time president sees this before anything has been submitted.</dd>
+          <dt>Why it exists</dt><dd>The brief flags happy-path-only design as a weakness, and the empty state is where a first-time lead forms their model of what this screen is for.</dd>
+          <dt>Content decision</dt><dd>The hint states what will appear and when, rather than only saying the list is empty.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- W3 -->
+    <div role="tabpanel" id="p3" aria-labelledby="t3" tabindex="0" hidden>
+      <div class="framewrap">
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="appbar"><div class="glyph"></div><div class="ttl">#E-031</div></div>
+          <div class="body">
+            <p class="rtitle" style="font-size:16px">Guest Speaker Session</p>
+            <p class="meta">Submitted 11 Oct</p>
+            <span class="chip ok" style="display:inline-block;margin-top:10px">On time</span>
+            <div class="steps" style="margin-top:14px"><i class="step done"></i><i class="step now"></i><i class="step"></i><i class="step"></i></div>
+            <div class="steplabels"><span>Submitted</span><span>Mentor</span><span>Dept</span><span>Decision</span></div>
+            <dl class="kv">
+              <dt>Now with</dt><dd>Faculty Mentor</dd>
+              <dt>Last update</dt><dd>11 Oct, 2:10 pm</dd>
+              <dt>Expected by</dt><dd>15 Oct</dd>
+              <dt>Stage age</dt><dd>1 day of 4</dd>
+            </dl>
+            <button class="btn ghost">View full history</button>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>Annotation — W3</h3>
+        <dl>
+          <dt>Role in flow</dt><dd>The R1 answer in full: which stage, which office, when it last moved, when it is due.</dd>
+          <dt>Visual hierarchy</dt><dd>Four levels: event name, status chip, stage bar, then the detail list. A lead who only reads the top two lines has already answered the question that sent them here.</dd>
+          <dt>Gestalt — continuity</dt><dd>The four-segment bar runs left to right in reading order, so progress is read as one continuous track rather than four separate indicators.</dd>
+          <dt>Serves</dt><dd><code>R1</code> stage visible without contacting anyone · <code>R4</code> stage age against expectation</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- W4 -->
+    <div role="tabpanel" id="p4" aria-labelledby="t4" tabindex="0" hidden>
+      <div class="framewrap">
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="appbar"><div class="glyph"></div><div class="ttl">#E-024</div></div>
+          <div class="body">
+            <p class="rtitle" style="font-size:16px">Annual TechFest</p>
+            <p class="meta">Submitted 6 Oct</p>
+            <span class="chip late" style="display:inline-block;margin-top:10px">Overdue — 2 days</span>
+            <div class="steps" style="margin-top:14px"><i class="step done"></i><i class="step done"></i><i class="step now"></i><i class="step"></i></div>
+            <div class="steplabels"><span>Submitted</span><span>Mentor</span><span>Dept</span><span>Decision</span></div>
+            <div class="callout" style="margin-top:14px">
+              <strong>Past expected date</strong>
+              Department review was expected by 12 Oct. The reviewing officer was notified automatically on 13 Oct.
+            </div>
+            <dl class="kv">
+              <dt>Now with</dt><dd>Department Office</dd>
+              <dt>Last update</dt><dd>10 Oct, 11:05 am</dd>
+              <dt>Expected by</dt><dd>12 Oct — passed</dd>
+              <dt>Officer alerted</dt><dd>13 Oct, automatic</dd>
+            </dl>
+            <button class="btn ghost">View full history</button>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>Annotation — W4</h3>
+        <dl>
+          <dt>Role in flow</dt><dd>The same screen as W3 in a different state. This is the state the research is actually about: a lead who has heard nothing and cannot tell whether that is normal.</dd>
+          <dt>Visual hierarchy</dt><dd>The overdue callout is placed above the detail list, because the answer to "is this normal?" outranks the metadata that explains it.</dd>
+          <dt>Gestalt — common region</dt><dd>The heavy-bordered callout encloses the exception, separating it from the routine metadata below without needing colour.</dd>
+          <dt>Serves</dt><dd><code>R4</code> normal distinguishable from overdue · escalation surfaced to the lead, not only to staff</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- W5 -->
+    <div role="tabpanel" id="p5" aria-labelledby="t5" tabindex="0" hidden>
+      <div class="framewrap">
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="appbar"><div class="glyph"></div><div class="ttl">#E-024</div></div>
+          <div class="body">
+            <p class="rtitle" style="font-size:16px">Annual TechFest</p>
+            <span class="chip decided" style="display:inline-block;margin-top:10px">Changes needed</span>
+            <div class="steps" style="margin-top:14px"><i class="step done"></i><i class="step done"></i><i class="step done"></i><i class="step now"></i></div>
+            <div class="steplabels"><span>Submitted</span><span>Mentor</span><span>Dept</span><span>Decision</span></div>
+            <div class="callout" style="margin-top:14px">
+              <strong>Reason given</strong>
+              The requested venue is already booked for an examination on 22 October. Propose an alternative date or venue and resubmit.
+            </div>
+            <dl class="kv">
+              <dt>Decided by</dt><dd>Department Office</dd>
+              <dt>Recorded</dt><dd>14 Oct, 9:30 am</dd>
+              <dt>Resubmit by</dt><dd>18 Oct</dd>
+            </dl>
+            <button class="btn">Edit &amp; resubmit</button>
+            <button class="btn ghost">View full history</button>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>Annotation — W5</h3>
+        <dl>
+          <dt>Role in flow</dt><dd>The outcome, carrying its reason. A reviewer cannot record Changes Needed without writing one, so this block is never empty.</dd>
+          <dt>Visual hierarchy</dt><dd>Reason above metadata, and the primary action directly beneath the reason, so reading and acting are adjacent.</dd>
+          <dt>Gestalt — similarity</dt><dd>The reason block reuses the exact callout treatment from W4, so an exception always looks the same wherever it appears in the flow.</dd>
+          <dt>Serves</dt><dd><code>R3</code> outcome communicated with a stated reason</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- W6 -->
+    <div role="tabpanel" id="p6" aria-labelledby="t6" tabindex="0" hidden>
+      <div class="framewrap">
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="appbar"><div class="glyph"></div><div class="ttl">Edit request</div></div>
+          <div class="body">
+            <div class="callout" style="margin-bottom:14px">
+              <strong>What to change</strong>
+              Venue booked for an examination on 22 October.
+            </div>
+            <div class="field"><label>Event title <span class="req">· required</span></label><div class="inp">Annual TechFest</div></div>
+            <div class="field"><label>Proposed date <span class="req">· required</span></label><div class="inp">dd / mm / yyyy</div></div>
+            <div class="field"><label>Venue <span class="req">· required</span></label><div class="inp">Select a venue</div></div>
+            <div class="field"><label>Note to reviewer</label><div class="inp tall">Optional</div></div>
+            <button class="btn">Resubmit request</button>
+            <button class="btn ghost">Save draft</button>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>Annotation — W6</h3>
+        <dl>
+          <dt>Role in flow</dt><dd>Correction, not restart. Only the fields the decision affects are editable; the rest of the request carries forward.</dd>
+          <dt>Visual hierarchy</dt><dd>The reviewer's reason sits above the first field, so the instruction is readable while the fields are being filled rather than remembered from the previous screen.</dd>
+          <dt>Gestalt — proximity</dt><dd>Label, input and the space beneath it reserved for an error form one visual unit, with wider gaps between fields than within them.</dd>
+          <dt>Serves</dt><dd><code>R2</code> required fields marked before submission is attempted</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- W7 -->
+    <div role="tabpanel" id="p7" aria-labelledby="t7" tabindex="0" hidden>
+      <span class="pathtag">Alternate / error path</span>
+      <div class="framewrap">
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="appbar"><div class="glyph"></div><div class="ttl">Edit request</div></div>
+          <div class="body">
+            <div class="callout" style="margin-bottom:14px;border-width:3px">
+              <strong>Not resubmitted — 2 fields need attention</strong>
+              Nothing was sent. Your draft is kept. Fix the two fields below and resubmit.
+            </div>
+            <div class="field"><label>Event title <span class="req">· required</span></label><div class="inp">Annual TechFest</div></div>
+            <div class="field">
+              <label>Proposed date <span class="req">· required</span></label>
+              <div class="inp bad">dd / mm / yyyy</div>
+              <p class="err"><span class="mark">!</span><span>Choose a date. The reviewer asked for an alternative to 22 October.</span></p>
+            </div>
+            <div class="field">
+              <label>Venue <span class="req">· required</span></label>
+              <div class="inp bad">Select a venue</div>
+              <p class="err"><span class="mark">!</span><span>Choose a venue. CS Lawn and the Auditorium are free on your proposed date.</span></p>
+            </div>
+            <div class="field"><label>Note to reviewer</label><div class="inp tall">Optional</div></div>
+            <button class="btn">Resubmit request</button>
+            <button class="btn ghost">Save draft</button>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>Annotation — W7</h3>
+        <dl>
+          <dt>Role in flow</dt><dd>The required alternate path. Submission is attempted with two required fields empty.</dd>
+          <dt>Error behaviour</dt><dd>A summary at the top states what did not happen and that the draft survives, then each field carries its own specific message. Both are needed: the summary for someone who submitted and looked away, the inline message for someone fixing the field.</dd>
+          <dt>Messages are actionable</dt><dd>Each says what to do, and the venue error volunteers what is actually free, so the lead is not sent back to guess.</dd>
+          <dt>Non-colour error marking</dt><dd>Thicker border on the field, a bordered exclamation mark, and bold message text. No red.</dd>
+          <dt>Audit point</dt><dd>In the built version the summary takes focus and is announced; this is logged in the Part A keyboard walkthrough.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- W8 -->
+    <div role="tabpanel" id="p8" aria-labelledby="t8" tabindex="0" hidden>
+      <div class="framewrap">
+        <div class="frame">
+          <div class="statusbar"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="appbar"><div class="glyph"></div><div class="ttl">#E-024</div></div>
+          <div class="body">
+            <div class="success">
+              <div class="ring">✓</div>
+              <p class="rtitle">Resubmitted</p>
+              <p class="meta">14 Oct, 10:12 am</p>
+            </div>
+            <div class="steps"><i class="step done"></i><i class="step done"></i><i class="step now"></i><i class="step"></i></div>
+            <div class="steplabels"><span>Submitted</span><span>Mentor</span><span>Dept</span><span>Decision</span></div>
+            <dl class="kv">
+              <dt>Now with</dt><dd>Department Office</dd>
+              <dt>Expected by</dt><dd>17 Oct</dd>
+              <dt>You changed</dt><dd>Date, venue</dd>
+            </dl>
+            <button class="btn ghost">Back to My Requests</button>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>Annotation — W8</h3>
+        <dl>
+          <dt>Role in flow</dt><dd>Closes the loop. Confirmation is not a dead end: it immediately restates the new stage and the new expected date.</dd>
+          <dt>Why the stage bar repeats here</dt><dd>The research showed leads re-checking straight after acting. Showing the new state on the confirmation screen removes one of those return trips.</dd>
+          <dt>Gestalt — similarity</dt><dd>The stage bar and detail list are identical to W3 and W4, so the confirmation reads as the same object in a new state rather than a separate screen.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="foot">
+  Eight screens, one alternate path. Part A artifact for D4 · D08 Shmeezki &amp; Mahid · CS3014 Applied HCI.
+  Grayscale and unpolished by intent: this version exists to validate structure, flow and accessibility before anything is built.
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+
+  function select(i, moveFocus) {
+    tabs.forEach(function (t, n) {
+      var on = n === i;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      panels[n].hidden = !on;
+    });
+    if (moveFocus) { tabs[i].focus(); }
+  }
+
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { select(i, false); });
+    t.addEventListener('keydown', function (e) {
+      var last = tabs.length - 1, n = null;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { n = i === last ? 0 : i + 1; }
+      else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { n = i === 0 ? last : i - 1; }
+      else if (e.key === 'Home') { n = 0; }
+      else if (e.key === 'End') { n = last; }
+      if (n !== null) { e.preventDefault(); select(n, true); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
